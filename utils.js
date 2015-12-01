@@ -80,5 +80,14 @@ var utils =  {
         return Math.round(value / nearest ) * nearest;
     },
 
+    randomDist: function(min, max, iterations) {
+        var total = 0;
+
+        for(var it=0; it< iterations; it++) {
+            total += utils.randomRange(min, max);
+        }
+        return total / iterations;
+    },
+
 
 }

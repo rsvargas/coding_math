@@ -45,8 +45,7 @@ window.onload = function() {
         var force = utils.map(rawForce, -1, 1, 2, 20);
         cannonball.x = gun.x + Math.cos(gun.angle) * 40;
         cannonball.y = gun.y + Math.sin(gun.angle) * 40;
-        cannonball.vx = Math.cos(gun.angle) * force;
-        cannonball.vy = Math.sin(gun.angle) * force;
+        cannonball.setSpeedHeading( force, gun.angle);
 
         isShooting = true;
     }
