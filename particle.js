@@ -142,5 +142,14 @@ var particle = {
         ctx.fillStyle = color || "#000";
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         ctx.fill();
-    }
+    },
+
+    drawLineTo: function(ctx, p1, color) {
+        ctx.beginPath();
+        ctx.strokeStyle = color || "#000";
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(p1.x, p1.y);
+        ctx.stroke();
+    },
+
 };
