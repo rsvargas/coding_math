@@ -89,5 +89,38 @@ var utils =  {
         return total / iterations;
     },
 
+    quadraticBezier: function(p0, p1, p2, t, pFinal) {
+        // gets the 't' point between p0 and p1, then
+        // the 't' point between p1 and p2, and then
+        // the 't' point, between those two points.
+        // with:  0 <= t <= 1
+        // The formula is: (1-t)^2 *p0.x  + (1-t)*2*p1.x +  t^2 * p2.x  (and the same for y)
+        pFinal = pFinal || {};
 
-}
+        var a = 1 - t,
+            b = a * a,
+            c = a*2*t,
+            d = t*t;
+
+        pFinal.x = b*p0.x + c*p1.x + d*p2.x;
+        pFinal.y = b*p0.y + c*p1.y + d*p2.y;
+        return pFinal;
+    },
+
+    cubicBezier: function(p0, p1, p2, p3, t, pFinal) {
+        //the same as the quadratic, but with an extra interpolation step.
+        // The formula is:
+        // (1-t)^3 * p0.x +  (1-t)^2 * 3*t*p1.x +  (1-t) *3*t^2 * p2.x + t^3 * p3.x
+        pFinal = pFinal || {};
+        var a = 1 - t,
+            b = a * a,
+            c = b * a,
+            d = b * 3 * t,
+            e = t * t,
+            f = a * 3 * e,
+            g = e * t;
+        pFinal.x = c*p0.x + d*p1.x + f*p2.x + g*p3.x;
+        pFinal.y = c*p0.y + d*p1.y + f*p2.y + g*p3.y;
+        return pFinal;
+    }
+};
