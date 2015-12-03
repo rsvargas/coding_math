@@ -5,7 +5,7 @@ window.onload = function() {
         height = canvas.height = window.innerHeight,
         fl = 300,
         shapes = [],
-        numShapes = 100;
+        numShapes = 21;
 
     for(var i=0; i< numShapes; i++) {
         shapes[i] = {
