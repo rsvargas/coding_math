@@ -42,7 +42,7 @@ window.onload = function() {
             context.scale(perspective, perspective);
             context.translate(point.x, point.y);
 
-            if( i == 0) {
+            if( i === 0) {
                 context.moveTo(0,0);
             } else {
                 context.lineTo(0,0);
