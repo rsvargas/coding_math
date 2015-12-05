@@ -138,5 +138,12 @@ var utils =  {
         p0 = points[points.length -2];
         p1 = points[points.length -1];
         context.quadraticCurveTo(p0.x, p0.y, p1.x, p1.y);
+    },
+
+    circle: function(ctx, point, radius, style) {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = style || "black";
+        ctx.fill();
     }
 };
