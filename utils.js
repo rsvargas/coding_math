@@ -140,6 +140,15 @@ var utils =  {
         context.quadraticCurveTo(p0.x, p0.y, p1.x, p1.y);
     },
 
+    multiline: function(context, points) {
+        context.beginPath();
+        context.moveTo(points[0].x, points[0].y);
+        for(var i=1; i< points.length; i++) {
+            context.lineTo(points[i].x, points[i].y);
+        }
+        context.stroke();
+    },
+
     circle: function(ctx, point, radius, style, alpha) {
         ctx.beginPath();
         ctx.globalAlpha = (alpha === null) ? 1 : alpha;
