@@ -55,6 +55,34 @@ var utils =  {
                utils.rangeIntersect(r0.y, r0.y + r0.height, r1.y, r1.y + r1.height);
     },
 
+    lineIntersect: function(p0, p1, p2, p3, segment) {
+        var A1 = p1.y - p0.y;
+        var B1 = p0.x - p1.x;
+        var C1 = A1 * p0.x + B1* p0.y;
+        var A2 = p3.y - p2.y;
+        var B2 = p2.x - p3.x;
+        var C2 = A2 * p2.x + B2* p2.y;
+        var denominator = A1* B2 - A2 * B1;
+        if(denominator === 0) {
+            return null;
+        }
+        var intersectX = (B2*C1 - B1*C2) / denominator;
+        var intersectY = (A1*C2 - A2*C1) / denominator;
+        if(segment){
+            var rx0 = (intersectX - p0.x) / (p1.x - p0.x);
+            var ry0 = (intersectY - p0.y) / (p1.y - p0.y);
+            var rx1 = (intersectX - p2.x) / (p3.x - p2.x);
+            var ry1 = (intersectY - p2.y) / (p3.y - p2.y);
+            if( (rx0 < 0 || rx0 > 1 ) && (ry0 < 0 || ry0 > 1) ||
+                (rx1 < 0 || rx1 > 1 ) && (ry1 < 0 || ry1 > 1)) {
+                return null;
+            }
+        }
+
+        return {x: intersectX, y: intersectY};
+
+    },
+
     randomRange: function(min, max) {
         return min + Math.random() * (max - min);
     },
@@ -140,13 +168,28 @@ var utils =  {
         context.quadraticCurveTo(p0.x, p0.y, p1.x, p1.y);
     },
 
-    multiline: function(context, points) {
+    multiline: function(context, points, opts) {
+        options = {closed: false, style: "black", filled: false};
+        if(opts !== undefined && opts.constructor === Object) {
+            for(var o in opts){
+                options[o] = opts[o];
+            }
+        }
         context.beginPath();
         context.moveTo(points[0].x, points[0].y);
         for(var i=1; i< points.length; i++) {
             context.lineTo(points[i].x, points[i].y);
         }
-        context.stroke();
+        if( options.closed) {
+            context.closePath();
+        }
+        if( options.filled) {
+            context.fillStyle = options.style;
+            context.fill();
+        } else {
+            context.strokeStyle = options.style;
+            context.stroke();
+        }
     },
 
     circle: function(ctx, point, radius, style, alpha) {
