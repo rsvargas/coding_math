@@ -9,7 +9,8 @@ window.onload = function() {
     part.radius = 4;
 
     var lines = [];
-    for(var i=0; i< 10; i++)
+    var lineCount = 20;
+    for(var i=0; i< lineCount; i++)
     {
         lines[i] = {
             p0: {
@@ -41,7 +42,7 @@ window.onload = function() {
             var intersect = utils.lineIntersect(p0, p1, p2, p3, true);
             if(intersect)
             {
-                utils.circle(context, intersect, 5, "red");
+                utils.circle(context, intersect, 15, {filled:false, style:"red"});
                 return;
             }
         }

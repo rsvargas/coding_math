@@ -192,11 +192,22 @@ var utils =  {
         }
     },
 
-    circle: function(ctx, point, radius, style, alpha) {
+    circle: function(ctx, point, radius, opts) {
+        options = {style: "black", filled: true, alpha: 1};
+        if(opts !== undefined && opts.constructor === Object) {
+            for(var o in opts){
+                options[o] = opts[o];
+            }
+        }
         ctx.beginPath();
-        ctx.globalAlpha = (alpha === null) ? 1 : alpha;
+        ctx.globalAlpha = options.alpha;
         ctx.arc(point.x, point.y, radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = style || "black";
-        ctx.fill();
+        if( options.filled) {
+            ctx.fillStyle = options.style;
+            ctx.fill();
+        } else {
+            ctx.strokeStyle = options.style;
+            ctx.stroke();
+        }
     },
 };

@@ -42,17 +42,17 @@ window.onload = function() {
     function draw() {
         context.clearRect(0, 0, width, height);
 
-        utils.circle(context, p0, 5, "blue");
-        utils.circle(context, p1, 5, "blue");
-        utils.circle(context, p2, 5, "blue");
-        utils.circle(context, p3, 5, "blue");
+        utils.circle(context, p0, 5, {style:"blue"});
+        utils.circle(context, p1, 5, {style:"blue"});
+        utils.circle(context, p2, 5, {style:"blue"});
+        utils.circle(context, p3, 5, {style:"blue"});
 
         utils.multiline(context, [p0, p1]);
         utils.multiline(context, [p2, p3]);
 
         var intersect = lineIntersect(p0, p1, p2, p3, true);
         if(intersect){
-            utils.circle(context, intersect, 10);
+            utils.circle(context, intersect, 15, {filled: false, style: "red"});
         }
     }
 

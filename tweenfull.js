@@ -48,7 +48,7 @@ window.onload = function() {
     function render() {
         context.clearRect(0, 0, width, height);
 
-        utils.circle(context, ball, 20, null, ball.alpha);
+        utils.circle(context, ball, 20, {alpha: ball.alpha});
     }
 
     //t: current time, b: beginning value, c: cange in value, d: duratino
