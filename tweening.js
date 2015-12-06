@@ -11,7 +11,7 @@ window.onload = function() {
 
         points = [],
         numPoints = 100,
-        ease = 0.5,
+        ease = 0.45,
         easing = true;
 
     for(var i = 0; i< numPoints; i++) {
