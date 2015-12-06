@@ -140,10 +140,11 @@ var utils =  {
         context.quadraticCurveTo(p0.x, p0.y, p1.x, p1.y);
     },
 
-    circle: function(ctx, point, radius, style) {
+    circle: function(ctx, point, radius, style, alpha) {
         ctx.beginPath();
+        ctx.globalAlpha = (alpha === null) ? 1 : alpha;
         ctx.arc(point.x, point.y, radius, 0, Math.PI * 2, false);
         ctx.fillStyle = style || "black";
         ctx.fill();
-    }
+    },
 };

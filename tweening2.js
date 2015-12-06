@@ -32,7 +32,7 @@ window.onload = function() {
         if(time < duration ) {
             var pos = {
                 x: easeInOutQuad(time, start.x, change.x, duration),
-                y: linearTween(time, start.y, change.y, duration)
+                y: easeInOutQuad(time, start.y, change.y, duration)
             };
 
             utils.circle(context, pos, 20);
