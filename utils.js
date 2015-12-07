@@ -169,13 +169,19 @@ var utils =  {
     },
 
     multiline: function(context, points, opts) {
-        options = {closed: false, style: "black", filled: false};
+        options = {
+            closed: false,
+            style: "black",
+            filled: false,
+            width: 1
+        };
         if(opts !== undefined && opts.constructor === Object) {
             for(var o in opts){
                 options[o] = opts[o];
             }
         }
         context.beginPath();
+        context.lineWidth = options.width;
         context.moveTo(points[0].x, points[0].y);
         for(var i=1; i< points.length; i++) {
             context.lineTo(points[i].x, points[i].y);
