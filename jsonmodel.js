@@ -8,64 +8,29 @@ window.onload = function() {
         sticks = [],
         bounce = 0.9,
         gravity = 0.5,
-        friction = 0.999,
-        engine = {
-            baseX: 450,
-            baseY: 100,
-            range: 100,
-            angle: 0,
-            speed: 0.05,
-            x: 550,
-            y: 100,
-            pinned: true
-        };
+        friction = 0.999;
 
-    points.push({ x: 100, y: 100, oldx: 100 + Math.random()*60 - 30, oldy: 100 + Math.random()*60 - 30 });
-    points.push({ x: 200, y: 100, oldx: 200, oldy: 100 });
-    points.push({ x: 200, y: 200, oldx: 200, oldy: 200 });
-    points.push({ x: 100, y: 200, oldx: 100, oldy: 200 });
-    points.push({ x: 400, y: 100, oldx: 400, oldy: 100 });
-    points.push({ x: 250, y: 100, oldx: 250, oldy: 100 });
-
-
-    sticks.push({
-        p0: points[0], p1: points[1],
-        length: utils.distance(points[0], points[1]),
-    });
-    sticks.push({
-        p0: points[1], p1: points[2],
-        length: utils.distance(points[1], points[2])
-    });
-    sticks.push({
-        p0: points[2], p1: points[3],
-        length: utils.distance(points[2], points[3])
-    });
-    sticks.push({
-        p0: points[3], p1: points[0],
-        length: utils.distance(points[3], points[0])
-    });
-    sticks.push({
-        p0: engine, p1: points[4],
-        length: utils.distance(engine, points[4])
-    });
-    sticks.push({
-        p0: points[4], p1: points[5],
-        length: utils.distance(points[4], points[5])
-    });
-    sticks.push({
-        p0: points[5], p1: points[0],
-        length: utils.distance(points[5], points[0])
-    });
-    sticks.push({
-        p0: points[0], p1: points[2],
-        length: utils.distance(points[0], points[2]),
-        hidden : true,
+    $.getJSON("model.json", function(data){
+        parseModel(data);
     });
 
-    update();
+    function parseModel(data) {
+        var i;
+        for(i=0; i< data.points.length; i++) {
+            points[i] = data.points[i];
+        }
+        for(i=0; i< data.sticks.length; i++) {
+            var s = data.sticks[i];
+            s.p0 = points[s.p0];
+            s.p1 = points[s.p1];
+            s.length = utils.distance(s.p0, s.p1);
+            sticks[i] = s;
+        }
+        update();
+    }
 
     function update() {
-        updateEngine();
+        //updateEngine();
         updatePoints();
         for(var i=0; i< 5; i++){
             updateSticks();
@@ -74,7 +39,7 @@ window.onload = function() {
         context.clearRect(0, 0, width, height);
         //renderPoints();
         renderSticks();
-        renderEngine();
+        //renderEngine();
         requestAnimationFrame(update);
     }
 
