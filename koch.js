@@ -4,16 +4,17 @@ window.onload = function() {
         width = canvas.width = window.innerWidth,
         height = canvas.height = window.innerHeight;
 
-    context.translate( width/2, height / 2);
+    // //koch snowflake
+    // context.translate( width/2, height / 2);
 
-    // original values
-    // var p0 = { x: 100, y: height * 0.75 },
-    //     p1 = { x: width -100, y: height * 0.75 };
+    //original values
+    var p0 = { x: 100, y: height * 0.75 },
+        p1 = { x: width -100, y: height * 0.75 };
 
-    //koch snowflake
-    var p0 = {x:   0, y:-321},
-        p1 = {x: 278, y: 160},
-        p2 = {x:-278, y: 160};
+    // //koch snowflake
+    // var p0 = {x:   0, y:-321},
+    //     p1 = {x: 278, y: 160},
+    //     p2 = {x:-278, y: 160};
 
 
     var limit = -1;
@@ -28,11 +29,13 @@ window.onload = function() {
             limit = 0;
         }
 
-        context.clearRect(-width/2, -height/2, width, height);
+        // //koch snowflake
+        // context.clearRect(-width/2, -height/2, width, height);
+        context.clearRect(0, 0, width, height);
         context.fillText("Limit = " + limit, -width/2+10, -height/2+10);
         koch(p0, p1, limit);
-        koch(p1, p2, limit);
-        koch(p2, p0, limit);
+        // koch(p1, p2, limit); //cock snowflake only
+        // koch(p2, p0, limit);
     }
 
     kochItUp();
