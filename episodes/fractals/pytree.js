@@ -93,5 +93,5 @@ window.onload = function() {
             debug = "continous";
             leap = up? -1 : 1;
         }
-    })
+    });
 };

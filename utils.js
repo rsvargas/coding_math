@@ -91,6 +91,13 @@ var utils =  {
         return Math.floor(utils.randomRange(min, max));
     },
 
+    randomColor: function() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb("+ r + ","+ g + "," + b  +")";
+    },
+
     degreesToRads: function(degrees) {
         return degrees / 180 * Math.PI;
     },
