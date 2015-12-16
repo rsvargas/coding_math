@@ -62,7 +62,7 @@ window.onload = function() {
                 }
                 break;
             case 38: //up
-                if(canMove(charX, charY - 1))
+                if(canMove(charX , charY - 1))
                 {
                     charY--;
                     drawCharacter(character, charX, charY);
